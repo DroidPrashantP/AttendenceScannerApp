@@ -1,60 +1,95 @@
 package com.paddy.bookseatapp.ui.fragments
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.budiyev.android.codescanner.AutoFocusMode
+import com.budiyev.android.codescanner.CodeScanner
+import com.budiyev.android.codescanner.DecodeCallback
+import com.budiyev.android.codescanner.ErrorCallback
+import com.budiyev.android.codescanner.ScanMode
 import com.paddy.bookseatapp.R
+import com.paddy.bookseatapp.databinding.FragmentBookSeatInLibraryBinding
+import com.paddy.bookseatapp.utils.hide
+import com.paddy.bookseatapp.utils.show
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_library) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookSeatInLibraryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class BookSeatInLibraryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    companion object {
+        fun newInstance() = BookSeatInLibraryFragment()
+    }
+    private var mLayoutViewBinding : FragmentBookSeatInLibraryBinding? = null
+    private lateinit var codeScanner: CodeScanner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mLayoutViewBinding = FragmentBookSeatInLibraryBinding.bind(view)
+        setViewClickListener()
+        bindScannerView()
+    }
+
+
+    private fun setViewClickListener() {
+        mLayoutViewBinding?.apply {
+            btnScanQRCode.setOnClickListener {
+                fmScannerViewContainer.show()
+            }
+
+            btnEndSession.setOnClickListener {
+
+            }
+
+            scannerView?.setOnClickListener {
+                if (::codeScanner.isInitialized) {
+                    codeScanner.startPreview()
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book_seat_in_library, container, false)
+    private fun bindScannerView(){
+        mLayoutViewBinding?.apply {
+            scannerView?.let {
+                codeScanner = CodeScanner(activity as Context, it).apply {
+                    // Parameters (default values)
+                    camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
+                    formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
+                    // ex. listOf(BarcodeFormat.QR_CODE)
+                    autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
+                    scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
+                    isAutoFocusEnabled = true // Whether to enable auto focus or not
+                    isFlashEnabled = false // Whether to enable flash or not
+
+                    // Callbacks
+                    decodeCallback = DecodeCallback {
+                        (activity as Activity).runOnUiThread {
+                            fmScannerViewContainer.hide()
+                            Log.e("TTT", "Scan result: ${it.text}")
+                        }
+                    }
+
+                    errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+
+                        (activity as Activity).runOnUiThread {
+                            Toast.makeText(activity, "Camera initialization error: ${it.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+            }
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookSeatInLibraryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BookSeatInLibraryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        mLayoutViewBinding = null
+        super.onDestroyView()
     }
 }
