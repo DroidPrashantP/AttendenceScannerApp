@@ -2,5 +2,14 @@
     <string name="app_name">BookSeatApp</string>
     <string name="scan_qr_label">Scan QR</string>
     <string name="end_session_label">End Session</string>
-
+    <string name="duration"> %1$s:%2$s:%3$s</string>
+    <string name="submission_success">Data submitted successfully</string>
+    <string name="submission_error">Error occurred while submitting data</string>
+    <string name="address_label">Address : %s</string>
+    <string name="start_time_label">Start Time : %s</string>
+    <string name="end_time_label">End Time : %s</string>
+    <string name="price_per_minutes_label">Price Per Minutes : Rs %s</string>
+    <string name="total_price_label">Total amount you have to pay\n  Rs %s</string>
+    <string name="initial_time_label">00:00:00</string>
+    <string name="clear_label">Clear</string>
 </resources>

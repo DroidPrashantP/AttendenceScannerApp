@@ -1,184 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.BookSeatInLibraryFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_locationIdValue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/dimen_16dp"
-        android:layout_marginStart="@dimen/dimen_16dp"
-        android:layout_marginEnd="@dimen/dimen_16dp"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Library Name"
-        android:padding="8dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_locationDetailValue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/white"
-        android:text="ButterKnife Lib, 80 Feet Rd,
-Koramangala 1A Block, Bangalore"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationIdValue"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="8dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_startTimeLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/white"
-        android:text="Start Time :"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dimen_8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationDetailValue"
-        android:padding="4dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_startTimeValue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/white"
-        android:text="10.15 AM"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dimen_8dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_libraryDataScreen_startTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationDetailValue"
-        android:padding="4dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_chargesLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/white"
-        android:text="Price : "
-        android:gravity="center"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_startTimeLabel"
-        android:padding="4dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_priceValue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/white"
-        android:text="Rs 200"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dimen_8dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_libraryDataScreen_chargesLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_startTimeLabel"
-        android:padding="4dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_pricePerminut"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/white"
-        android:text=""
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationIdValue"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/dimen_4dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_timer"
-        android:layout_width="@dimen/dimen_200dp"
-        android:layout_height="@dimen/dimen_200dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="00:00:00"
-        android:background="@drawable/timer_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationDetailValue"
-        android:padding="8dp"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_amountLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:visibility="gone"
-        android:text="Total Amount you have to pay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_timer"
-        android:padding="8dp"/>
-
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_libraryDataScreen_amount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_amountLabel"
-        android:padding="8dp"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnScanQRCode"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clInfoMainContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/button_bg"
-        android:text="@string/scan_qr_label"
-        android:textColor="@color/white"
-        android:layout_margin="16dp"/>
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:context=".ui.fragments.BookSeatInLibraryFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEndSession"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/button_bg"
-        android:text="@string/end_session_label"
-        android:visibility="gone"
-        android:textColor="@color/white"
-        android:layout_margin="16dp"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_clearSession"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:text="@string/clear_label"
+            android:padding="@dimen/dimen_8dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_locationIdValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/dimen_8dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_locationDetailValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:padding="@dimen/dimen_4dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationIdValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_startTimeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:padding="@dimen/dimen_4dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationDetailValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_endTimeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_startTimeValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_priceValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:padding="@dimen/dimen_4dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_endTimeValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_timer"
+            android:layout_width="@dimen/dimen_180dp"
+            android:layout_height="@dimen/dimen_180dp"
+            android:background="@drawable/timer_bg"
+            android:gravity="center"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/initial_time_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_30sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_locationDetailValue"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_libraryDataScreen_totalPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:padding="@dimen/dimen_4dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_20sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_libraryDataScreen_timer" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnScanQRCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_bg"
+            android:text="@string/scan_qr_label"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEndSession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_bg"
+            android:text="@string/end_session_label"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/fmScannerViewContainer"
@@ -194,14 +167,14 @@ Koramangala 1A Block, Bangalore"
             app:autoFocusButtonVisible="true"
             app:flashButtonColor="@android:color/white"
             app:flashButtonVisible="true"
-            app:frameColor="@android:color/white"
-            app:frameCornersSize="50dp"
-            app:frameCornersRadius="0dp"
-            app:frameAspectRatioWidth="1"
             app:frameAspectRatioHeight="1"
+            app:frameAspectRatioWidth="1"
+            app:frameColor="@android:color/white"
+            app:frameCornersRadius="0dp"
+            app:frameCornersSize="50dp"
             app:frameSize="0.75"
             app:frameThickness="2dp"
-            app:maskColor="#77000000"/>
+            app:maskColor="#77000000" />
     </FrameLayout>
 
 
