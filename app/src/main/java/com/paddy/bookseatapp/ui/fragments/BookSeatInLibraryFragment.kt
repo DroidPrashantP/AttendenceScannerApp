@@ -18,7 +18,7 @@ import com.paddy.bookseatapp.data.model.LibraryQRScanResult
 import com.paddy.bookseatapp.databinding.FragmentBookSeatInLibraryBinding
 import com.paddy.bookseatapp.utils.CommonUtils
 import com.paddy.bookseatapp.utils.LibraryConstant
-import com.paddy.bookseatapp.utils.disable
+import com.paddy.bookseatapp.utils.appendZero
 import com.paddy.bookseatapp.utils.enable
 import com.paddy.bookseatapp.utils.hide
 import com.paddy.bookseatapp.utils.show
@@ -85,27 +85,16 @@ class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_librar
                     tvLibraryDataScreenLocationDetailValue.text = String.format(ctx.getString(R.string.address_label), session.locationDetails)
                     tvLibraryDataScreenPriceValue.text = String.format(ctx.getString(R.string.price_per_minutes_label), session.pricePerMin.toString())
                     tvLibraryDataScreenStartTimeValue.text = String.format(ctx.getString(R.string.start_time_label), CommonUtils.convertMillisToFormattedTime(session.startTime))
-                    if(mScannerType == ScannerType.EXIT) {
-                        tvLibraryDataScreenEndTimeValue.show()
-                        tvLibraryDataScreenEndTimeValue.text = String.format(ctx.getString(R.string.end_time_label), CommonUtils.convertMillisToFormattedTime(session.endTime))
-
-                        tvLibraryDataScreenTotalPrice.show()
-                        tvLibraryDataScreenTotalPrice.text = String.format(ctx.getString(R.string.total_price_label), session.totalPrice.toString())
-
-                    } else {
-                        tvLibraryDataScreenEndTimeValue.hide()
-                        tvLibraryDataScreenTotalPrice.hide()
-                    }
-
+                    tvLibraryDataScreenEndTimeValue.text = String.format(ctx.getString(R.string.end_time_label), CommonUtils.convertMillisToFormattedTime(session.endTime))
+                    tvLibraryDataScreenTotalPrice.text = String.format(ctx.getString(R.string.total_price_label), session.totalPrice.toString())
                     tvLibraryDataScreenTimer.show()
                     tvLibraryDataScreenTimer.text = String.format(
                         getString(R.string.duration),
-                        session.hour,
-                        session.minute,
-                        session.seconds,
+                        session.hour.appendZero(),
+                        session.minute.appendZero(),
+                        session.seconds.appendZero(),
                     )
                 }
-
 
             } ?: kotlin.run {
                 tvLibraryDataScreenLocationIdValue.text = LibraryConstant.EMPTY
@@ -115,6 +104,10 @@ class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_librar
                 tvLibraryDataScreenEndTimeValue.text = LibraryConstant.EMPTY
                 tvLibraryDataScreenTotalPrice.text = LibraryConstant.EMPTY
                 tvLibraryDataScreenTimer.hide()
+                btnScanQRCode.show()
+                btnEndSession.hide()
+                btnScanQRCode.enable()
+                btnEndSession.enable()
             }
         }
 
@@ -126,9 +119,15 @@ class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_librar
                 if (active) {
                     btnScanQRCode.hide()
                     btnEndSession.show()
+                    tvLibraryDataScreenEndTimeValue.hide()
+                    tvLibraryDataScreenTotalPrice.hide()
+                    tvLibraryDataScreenClearSession.hide()
                 } else {
                     btnScanQRCode.show()
                     btnEndSession.hide()
+                    tvLibraryDataScreenEndTimeValue.show()
+                    tvLibraryDataScreenTotalPrice.show()
+                    tvLibraryDataScreenClearSession.show()
                 }
             }
         }
@@ -195,11 +194,12 @@ class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_librar
 
             mLayoutViewBinding?.apply {
                 if (it.data != null) {
-                    btnScanQRCode.disable()
-                    btnEndSession.disable()
+                    btnScanQRCode.show()
+                    btnEndSession.hide()
+                    mContext?.getString(R.string.submission_success)?.let { it1 -> mContext?.showMessage(it1) }
                 } else if (it.error != null) {
-                    btnScanQRCode.enable()
-                    btnEndSession.enable()
+                    btnScanQRCode.hide()
+                    btnEndSession.show()
                     mContext?.showMessage(it.error)
                 }
             }

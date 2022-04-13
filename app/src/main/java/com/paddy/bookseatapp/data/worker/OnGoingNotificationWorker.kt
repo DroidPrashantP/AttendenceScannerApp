@@ -14,6 +14,7 @@ import androidx.work.WorkerParameters
 import com.paddy.bookseatapp.R
 import com.paddy.bookseatapp.domain.GetUpdatedTime
 import com.paddy.bookseatapp.domain.LibrarySession
+import com.paddy.bookseatapp.utils.appendZero
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import timber.log.Timber
@@ -96,6 +97,6 @@ class OnGoingNotificationWorker @AssistedInject constructor(
     }
 
     private fun getSessionTimerText(hour: Long = 0L, minute: Long = 0L, seconds: Long = 0L): String {
-        return "Session :${hour}:${minute}:${seconds}"
+        return "${hour.appendZero()}:${minute.appendZero()}:${seconds.appendZero()}"
     }
 }
