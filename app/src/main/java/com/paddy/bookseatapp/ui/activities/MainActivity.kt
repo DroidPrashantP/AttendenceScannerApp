@@ -8,11 +8,16 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.paddy.bookseatapp.R
+import com.paddy.bookseatapp.domain.ShowOnGoingNotification
 import com.paddy.bookseatapp.ui.fragments.BookSeatInLibraryFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var mShowOnGoingNotification: ShowOnGoingNotification
 
     companion object {
         private var PERMISSION_REQUEST_CODE = 1000
@@ -65,5 +70,15 @@ class MainActivity : AppCompatActivity() {
                 // Ignore all other requests.
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mShowOnGoingNotification.cancel()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mShowOnGoingNotification.show()
     }
 }
