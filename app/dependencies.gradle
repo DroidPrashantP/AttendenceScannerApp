@@ -1,0 +1,61 @@
+
+ext {
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 31
+    androidCompileSdkVersion = 31
+
+    androidxCoreKtx = '1.7.0'
+    appcompatVersion = '1.4.1'
+    androidMaterialComponent = '1.5.0'
+    constraintLayoutVersion = '2.1.3'
+    legacySupportV4 = '1.0.0'
+    androidxFragmentKtx = '1.4.1'
+    QRCodeScanner = '2.1.2'
+    liveData = '2.4.1'
+    coroutines = '1.6.0'
+    workManager = '2.7.1'
+    androidHilt = '2.38.1'
+    androidHiltWork = '1.0.0'
+    roomDb = '2.4.2'
+    gsonVersion = '2.9.0'
+    commmonText = '1.6'
+    timber = '4.7.1'
+    retrofit = '2.9.0'
+    okhttpVersion = '4.9.1'
+    multidex = '2.0.1'
+    junit = '4.13.2'
+    junitExt = '1.1.3'
+    espressoCore = '3.4.0'
+
+    appDependencies = [
+            coreKtx : "androidx.core:core-ktx:${androidxCoreKtx}",
+            appCompat : "androidx.appcompat:appcompat:${appcompatVersion}",
+            material : "com.google.android.material:material:${androidMaterialComponent}",
+            constraintlayout : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            legacySupport : "androidx.legacy:legacy-support-v4:${legacySupportV4}",
+            fragmentKtx : "androidx.fragment:fragment-ktx:${androidxFragmentKtx}",
+            codeScanner : "com.github.yuriy-budiyev:code-scanner:${QRCodeScanner}",
+            lifecycleLivedata : "androidx.lifecycle:lifecycle-livedata-ktx:${liveData}",
+            lifecycleViewModel : "androidx.lifecycle:lifecycle-viewmodel-ktx:${liveData}",
+            coroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}",
+            workRuntime : "androidx.work:work-runtime:${workManager}",
+            workRuntimeKtx : "androidx.work:work-runtime-ktx:${workManager}",
+            hiltAndroid : "com.google.dagger:hilt-android:${androidHilt}",
+            hiltAndroidCompiler : "com.google.dagger:hilt-android-compiler:${androidHilt}",
+            hiltWork : "androidx.hilt:hilt-work:${androidHiltWork}",
+            hiltCompiler : "androidx.hilt:hilt-compiler:${androidHiltWork}",
+            roomRuntime : "androidx.room:room-runtime:${roomDb}",
+            roomCompiler : "androidx.room:room-compiler:${roomDb}",
+            roomKtx : "androidx.room:room-ktx:${roomDb}",
+            commonsText : "org.apache.commons:commons-text:${commmonText}",
+            timber : "com.jakewharton.timber:timber:${timber}",
+            retrofit : "com.squareup.retrofit2:retrofit:${retrofit}",
+            retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofit}",
+            okhttp : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            okhttpLoggingInterceptor : "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
+            multidex : "androidx.multidex:multidex:${multidex}",
+            junit : "junit:junit:${junit}",
+            junitExt : "androidx.test.ext:junit:${junitExt}",
+            espressoCore : "androidx.test.espresso:espresso-core:${espressoCore}"
+    ]
+}
