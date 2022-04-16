@@ -20,11 +20,20 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+            multiDexEnabled true
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -87,4 +96,6 @@ dependencies {
     testImplementation appDependencies.junit
     androidTestImplementation appDependencies.junitExt
     androidTestImplementation appDependencies.espressoCore
+    testImplementation appDependencies.truthLibrary
+    testImplementation appDependencies.mockinto
 }
