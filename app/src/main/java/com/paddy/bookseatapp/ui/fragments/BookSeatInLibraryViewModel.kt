@@ -9,7 +9,6 @@ import com.paddy.bookseatapp.domain.GetUpdatedTime
 import com.paddy.bookseatapp.domain.LibrarySessionStatus
 import com.paddy.bookseatapp.domain.SubmitLibrarySession
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,7 +39,6 @@ open class BookSeatInLibraryViewModel @Inject constructor(
                 try {
                     emit(DataResult(data = submitLibrarySession.submit(it, scanResult, endTime)))
                 } catch (e: Exception) {
-                    e.printStackTrace()
                     emit(DataResult(error = e.message))
                 }
             }

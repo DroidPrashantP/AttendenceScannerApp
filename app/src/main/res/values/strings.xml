@@ -12,4 +12,6 @@
     <string name="total_price_label">Total amount you have to pay\n  Rs %s</string>
     <string name="initial_time_label">00:00:00</string>
     <string name="clear_label">Clear</string>
+    <string name="please_scan_qr_code_msg">Please scan the QR code to end the session</string>
+    <string name="network_connection_msg">Please check your network connection</string>
 </resources>

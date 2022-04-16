@@ -1,6 +1,7 @@
 package com.paddy.bookseatapp.domain
 
 import android.content.Context
+import com.paddy.bookseatapp.R
 import com.paddy.bookseatapp.utils.NetworkUtils
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
@@ -19,11 +20,11 @@ class SubmitLibrarySession @Inject constructor(
             if (validateSession.isValid(endQrrScanResult)) {
                 endSession(endTime)
             } else {
-                throw Exception("Please scan the QR code to end the session")
+                throw Exception(context.getString(R.string.please_scan_qr_code_msg))
             }
         }
         else{
-            throw Exception("Please check your network connection")
+            throw Exception(context.getString(R.string.network_connection_msg))
         }
     }
 
