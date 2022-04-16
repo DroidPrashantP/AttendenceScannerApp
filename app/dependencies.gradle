@@ -26,6 +26,8 @@ ext {
     junit = '4.13.2'
     junitExt = '1.1.3'
     espressoCore = '3.4.0'
+    truthVersion = '1.1.3'
+    mockVerion = '1.12.3'
 
     appDependencies = [
             coreKtx : "androidx.core:core-ktx:${androidxCoreKtx}",
@@ -56,6 +58,8 @@ ext {
             multidex : "androidx.multidex:multidex:${multidex}",
             junit : "junit:junit:${junit}",
             junitExt : "androidx.test.ext:junit:${junitExt}",
-            espressoCore : "androidx.test.espresso:espresso-core:${espressoCore}"
+            espressoCore : "androidx.test.espresso:espresso-core:${espressoCore}",
+            truthLibrary : "com.google.truth:truth:${truthVersion}",
+            mockinto : "io.mockk:mockk:${mockVerion}"
     ]
 }
