@@ -1,6 +1,7 @@
 package com.paddy.bookseatapp.domain
 
 import com.google.common.truth.Truth
+import com.paddy.bookseatapp.utils.priceFormatting
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -18,7 +19,7 @@ class CalculateTotalAmountTest{
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(this,relaxed = true)
+        MockKAnnotations.init(this, relaxed = true)
     }
 
     @Test // Positive test case
@@ -42,14 +43,14 @@ class CalculateTotalAmountTest{
         val session = libraryRepository.getLibrarySession()
         val duration = (session.endTime - session.startTime).toBigDecimal().divide(60000.toBigDecimal(), 2, RoundingMode.HALF_UP)
 
-        Truth.assertThat(String.format("%.1f", duration).toFloat()).isEqualTo(mockDuration)
+        Truth.assertThat(duration.priceFormatting().toFloat()).isEqualTo(mockDuration)
 
         val amount =  BigDecimal(session.pricePerMin.toString()).multiply(BigDecimal(duration.toString()))
-        Truth.assertThat(String.format("%.1f", amount).toFloat()).isEqualTo(mockExpectedAmount)
+        Truth.assertThat(amount.priceFormatting().toFloat()).isEqualTo(mockExpectedAmount)
 
-        libraryRepository.updateAmount(String.format("%.1f", amount).toFloat())
+        libraryRepository.updateAmount(amount.priceFormatting().toFloat())
 
-        val roundOfAmount  = String.format("%.1f", amount).toFloat()
+        val roundOfAmount  = amount.priceFormatting().toFloat()
         coVerify(exactly = 1) { libraryRepository.getLibrarySession() }
         coVerify(exactly = 1) { libraryRepository.updateAmount(roundOfAmount) }
 
@@ -76,7 +77,7 @@ class CalculateTotalAmountTest{
         val duration = (session.endTime - session.startTime).toBigDecimal().divide(60000.toBigDecimal(), 2, RoundingMode.HALF_UP)
 
         val amount =  BigDecimal(session.pricePerMin.toString()).multiply(BigDecimal(duration.toString()))
-        Truth.assertThat(String.format("%.1f", amount).toFloat()).isNotEqualTo(mockExpectedAmount)
+        Truth.assertThat(amount.priceFormatting().toFloat()).isNotEqualTo(mockExpectedAmount)
 
         coVerify(exactly = 1) { libraryRepository.getLibrarySession() }
     }
@@ -101,6 +102,6 @@ class CalculateTotalAmountTest{
         val session = libraryRepository.getLibrarySession()
         val duration = (session.endTime - session.startTime).toBigDecimal().divide(60000.toBigDecimal(), 2, RoundingMode.HALF_UP)
 
-        Truth.assertThat(String.format("%.1f", duration).toFloat()).isNotEqualTo(mockDuration)
+        Truth.assertThat(duration.priceFormatting().toFloat()).isNotEqualTo(mockDuration)
     }
 }
