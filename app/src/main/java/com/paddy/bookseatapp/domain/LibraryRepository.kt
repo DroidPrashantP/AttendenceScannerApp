@@ -19,7 +19,7 @@ class LibraryRepository @Inject constructor(
     private var apiService: ApiService
 ) {
 
-    suspend fun saveQrScanResult(scanResult: LibraryQRScanResult, startTime: Long) {
+    suspend fun saveLibrarySessionDataInDB(scanResult: LibraryQRScanResult, startTime: Long) {
         val activeSession = scanResult.copy(sessionStatus = true, startTime = startTime)
         bookSeatDao.save(activeSession)
     }
@@ -39,13 +39,13 @@ class LibraryRepository @Inject constructor(
         }
     }
 
-    suspend fun getLibrarySessionStatus(): Flow<Boolean> {
+    fun getLibrarySessionStatus(): Flow<Boolean> {
         return bookSeatDao.getSessionStatus()
             .flowOn(Dispatchers.IO)
             .distinctUntilChanged()
     }
 
-    suspend fun getUpdatedTime(): Flow<LibraryQRScanResult> {
+    fun getUpdatedTime(): Flow<LibraryQRScanResult> {
         return bookSeatDao.getUpdatedTime()
             .flowOn(Dispatchers.IO)
             .distinctUntilChanged()

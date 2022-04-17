@@ -16,7 +16,7 @@ import javax.inject.Inject
 @ViewModelScoped
 class BookSeat @Inject constructor(private val workManager: WorkManager) {
 
-    suspend fun bookSeat(scanResult: String) {
+    fun bookSeat(scanResult: String) {
         val workRequest = OneTimeWorkRequestBuilder<BookSeatWorker>()
             .setConstraints(
                 Constraints.Builder()
@@ -34,7 +34,7 @@ class BookSeat @Inject constructor(private val workManager: WorkManager) {
             .enqueue()
     }
 
-    suspend fun cancel() {
+    fun cancel() {
         workManager.cancelUniqueWork(TIMER_WORK)
     }
 

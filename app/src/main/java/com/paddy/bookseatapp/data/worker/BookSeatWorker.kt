@@ -18,7 +18,9 @@ class BookSeatWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result {
         val scanResult = inputData.getString(BookSeat.SCAN_RESULT)
-        bookSeatResult.saveTime(scanResult!!)
+        scanResult?.let {
+            bookSeatResult.saveTime(it)
+        }
         return Result.success()
     }
 }

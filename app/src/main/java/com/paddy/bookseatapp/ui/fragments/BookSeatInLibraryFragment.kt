@@ -64,7 +64,7 @@ class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_librar
         }
     }
 
-    private suspend fun observeViewsItemData() {
+    private fun observeViewsItemData() {
 
         bookSeatInLibraryViewModel.getUpdatedTime().observe(viewLifecycleOwner) { dataResult ->
             mLayoutViewBinding?.apply {
@@ -113,7 +113,7 @@ class BookSeatInLibraryFragment : Fragment(R.layout.fragment_book_seat_in_librar
 
     }
 
-    private suspend fun observeSessionStatus() {
+    private fun observeSessionStatus() {
         bookSeatInLibraryViewModel.getLibraryStatus().observe(viewLifecycleOwner) { active ->
             mLayoutViewBinding?.apply {
                 if (active) {

@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class GetUpdatedTime @Inject constructor(private val repository: LibraryRepository) {
 
-    suspend fun get(): Flow<LibraryQRScanResult> {
+    fun get(): Flow<LibraryQRScanResult> {
         return repository.getUpdatedTime().filterNotNull()
     }
 }

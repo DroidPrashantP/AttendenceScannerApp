@@ -3,22 +3,13 @@ package com.paddy.bookseatapp.utils
 import android.os.Handler
 import android.os.Looper
 import androidx.work.WorkManager
-import com.google.gson.Gson
-import com.paddy.bookseatapp.data.model.LibraryQRScanResult
 import com.paddy.bookseatapp.data.model.OnGoingTimer
-import org.apache.commons.text.StringEscapeUtils
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 object CommonUtils {
-
-    fun parseUnformattedJson(unformattedJson: String): LibraryQRScanResult {
-        val unQuotedString = unformattedJson.replace("^\"|\"$".toRegex(), "")
-        val unescapeString = StringEscapeUtils.unescapeJava(unQuotedString)
-        return Gson().fromJson(unescapeString, LibraryQRScanResult::class.java)
-    }
 
     fun logWorkInfo(id: UUID) {
         val mainHandler = Handler(Looper.getMainLooper())

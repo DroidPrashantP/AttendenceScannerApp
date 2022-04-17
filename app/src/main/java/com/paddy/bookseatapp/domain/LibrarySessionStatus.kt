@@ -8,7 +8,7 @@ import javax.inject.Inject
 @ViewModelScoped
 class LibrarySessionStatus @Inject constructor(private val libraryRepository: LibraryRepository) {
 
-    suspend fun get(): Flow<Boolean> {
+    fun get(): Flow<Boolean> {
         return libraryRepository.getLibrarySessionStatus().filterNotNull()
     }
 

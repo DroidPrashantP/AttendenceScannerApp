@@ -3,12 +3,14 @@ package com.paddy.bookseatapp.ui.fragments
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.paddy.bookseatapp.data.model.DataResult
 import com.paddy.bookseatapp.domain.BookSeat
 import com.paddy.bookseatapp.domain.GetUpdatedTime
 import com.paddy.bookseatapp.domain.LibrarySessionStatus
 import com.paddy.bookseatapp.domain.SubmitLibrarySession
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,11 +21,13 @@ open class BookSeatInLibraryViewModel @Inject constructor(
     private val librarySessionStatus: LibrarySessionStatus
 ) : ViewModel() {
 
-    suspend fun bookSeat(qrScanResult: String) {
-        bookSeat.bookSeat(qrScanResult)
+    fun bookSeat(qrScanResult: String) {
+        viewModelScope.launch {
+            bookSeat.bookSeat(qrScanResult)
+        }
     }
 
-    suspend fun getUpdatedTime() = liveData {
+    fun getUpdatedTime() = liveData {
             try {
                 getUpdatedTime.get().collect {
                     emit(DataResult(data = it))
@@ -44,7 +48,7 @@ open class BookSeatInLibraryViewModel @Inject constructor(
             }
     }
 
-    suspend fun getLibraryStatus() = liveData {
+    fun getLibraryStatus() = liveData {
         librarySessionStatus.get().collect {
             emit(it)
         }
